@@ -1,16 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
-[ext_resource type="Script" uid="uid://bvl1c72acwqqe" path="res://scripts/main_cells.gd" id="1_m2aax"]
-[ext_resource type="Resource" uid="uid://cgylf2d8djueg" path="res://resources/species/yellow.tres" id="2_d43la"]
-[ext_resource type="Shader" uid="uid://2gg37bjpcn8r" path="res://scenes/main_cells.gdshader" id="2_gb4nr"]
-[ext_resource type="Resource" uid="uid://c3cqp0a8m2hyy" path="res://resources/species/red.tres" id="3_j0jj5"]
-[ext_resource type="Script" uid="uid://deomiu24t50i5" path="res://scripts/flow_field_manager.gd" id="5_m2aax"]
+[ext_resource type="Script" uid="uid://cwfefxc7trmo2" path="res://scripts/main_cells.gd" id="1_m2aax"]
+[ext_resource type="Resource" uid="uid://cqhufkus3gt3p" path="res://resources/species/red.tres" id="3_j0jj5"]
+[ext_resource type="Resource" uid="uid://b2l64oqp8lfh1" path="res://resources/species/yellow.tres" id="3_m2aax"]
+[ext_resource type="Script" uid="uid://d2yabqdwsnv7w" path="res://scripts/flow_field_manager.gd" id="5_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
-shader = ExtResource("2_gb4nr")
-shader_parameter/target_pos = Vector2(0, 0)
-shader_parameter/time = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_6ix1l"]
 
@@ -24,7 +20,7 @@ script = ExtResource("1_m2aax")
 [node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)
 size = 50
-species = ExtResource("2_d43la")
+species = ExtResource("3_m2aax")
 
 [node name="Cell2" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(893, 474)

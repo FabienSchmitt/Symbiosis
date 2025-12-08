@@ -4,23 +4,24 @@ class_name Cell
 @export var replication_speed := 2.0
 @export var size := 5
 @export var max_size := 100
-@export var species : Species
-
+@export var species: Species
 
 @onready var size_label : Label = $Label
 @onready var _selected_circle : Sprite2D  = %SelectedCircle
 @onready var _circle: Sprite2D = %BigDrawnCircle
 @onready var swarm_multimesh : MultiMeshInstance2D = %SwarmMeshInstance
 @onready var flow_field_manager: FlowFieldManager = %FlowFieldManager
+@onready var _replication_timer: Timer = %ReplicationTimer
 
 
-var _replication_timer : Timer
 var flow_field: FlowField
 
 func _ready() -> void:
-	create_timer()
-	update_species(species)
+	set_timer()
 	size_label.text = str(size)
+	if species == null : species = Species.new()
+	_circle.modulate = species.color
+	_selected_circle.modulate = species.color
 
 func _process(delta: float) -> void:
 	if (size >= max_size) : return
@@ -38,13 +39,12 @@ func _input_event(viewport, event, shape_idx):
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 		GameManager.add_selected_cell(self)
 
-func create_timer() -> void:
-	_replication_timer = Timer.new()
-	_replication_timer.wait_time = replication_speed  # seconds	
-	_replication_timer.autostart = true
-	_replication_timer.one_shot = false
-	add_child(_replication_timer)
+func set_timer() -> void:
+	_replication_timer.wait_time = species.replication_speed  # seconds	
 	_replication_timer.timeout.connect(_on_timer_timeout)
+	# in case, there is a change of species, restart timer
+	_replication_timer.start()
+
 
 func update_species(new_species: Species) -> void:
 	# TODO : when we have some other way to get the species.
@@ -53,7 +53,7 @@ func update_species(new_species: Species) -> void:
 	_circle.modulate = species.color
 
 func _on_timer_timeout() -> void:
-	if species.name	== "white": return
+	if species.is_neutral: return
 	size += 1
 	size_label.text = str(size)
 
@@ -62,7 +62,7 @@ func on_click():
 	pass
 
 func attack(target: Cell):
-	var swarm_size = size/2
+	var swarm_size = size / 2
 	size -= swarm_size
 	var swarm = Globals.swarm_factory.create_swarm(self, target, swarm_size)
 	get_tree().current_scene.add_child(swarm)

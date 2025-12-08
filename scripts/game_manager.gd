@@ -3,7 +3,7 @@ extends Node
 var _cells : Array[Cell]
 var _selected_cells : Array[Cell]
 var connection : Array[Behaviors]
-var grid: UniformGrid
+var grid: FlowFieldGrid
 
 enum Behaviors {SYMBIOSE, PREDATION, PARASITE}
 
@@ -40,9 +40,7 @@ func attack_cell(cell : Cell) -> void:
 # func get_cells(p_species: Species) -> Array[Cell] :
 # 	return _cells.filter(func(c): return c.species == p_species)
 
-
-
 ## Species
 func create_grid() -> void:
 	#default value, should come as a parameter I guess...
-	grid = UniformGrid.new(Vector2i(23, 13), 50)
+	grid = FlowFieldGrid.new(Vector2i(23, 13), 50)

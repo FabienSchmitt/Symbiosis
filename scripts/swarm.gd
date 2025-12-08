@@ -16,6 +16,7 @@ var visibility_threshold := 75
 
 var flow_field: FlowField
 var noise: FastNoiseLite
+var speed_sample : float = 0;
 
 
 func _init(particules: Array[Particule], target: Cell) -> void:
@@ -23,12 +24,18 @@ func _init(particules: Array[Particule], target: Cell) -> void:
 	_target = target
 	flow_field = target.flow_field
 	print("target flow field : ", flow_field)
+	connect_particules()
 	create_noise()
 
+func connect_particules():
+	for p in _particules:
+		p.reached.connect(on_reached.bind(p))
 
 func _physics_process(delta: float) -> void:
 	compute_center()
 	
+	speed_sample = fposmod(speed_sample + delta, 1)
+
 	#print("particules : ", flow_field.destination_cell.world_position, flow_field.destination_cell.grid_position)
 	for p in _particules:
 		var cell_below = flow_field.get_cell_from_world(p.global_position)
@@ -47,11 +54,11 @@ func _physics_process(delta: float) -> void:
 		var boid_force = get_boids_force(p, get_neighbors(p)).normalized() 
 		p.velocity += boid_force * boids_weight + direction * seek_weight
 		p.velocity = p.velocity.limit_length(p.speed)
-		p.global_position = p.global_position + p.velocity * delta
+		p.global_position = p.global_position + (p.velocity * delta * p.curve_max_speed.sample(speed_sample))
 		p.rotation = p.velocity.angle() + deg_to_rad(90)
 	
-	if _particules.all(func(p): return p.reached):
-		clean_up()
+	if _particules.size() == 0:
+		queue_free()
 
 
 func create_noise() -> void:
@@ -67,14 +74,6 @@ func compute_center() -> void :
 
 	_center = sum / _particules.size()
 
-func clean_up():
-	for p in _particules:
-		p.queue_free()
-	
-	self.queue_free()
-
-
-# BOIDS STUFF: BAD PERF
 func get_boids_force(p: Particule, n: Array[Particule]) -> Vector2:
 	if n == []:
 		return Vector2.ZERO
@@ -104,3 +103,8 @@ func align(current: Particule, neighbors: Array[Particule]) -> Vector2:
 		avg += n.velocity
 	avg /= neighbors.size()
 	return (avg - current.velocity).normalized()
+
+func on_reached(p: Particule):
+	print("reached")
+	_particules.erase(p)
+	p.queue_free()

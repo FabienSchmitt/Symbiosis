@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Symbiosis"
+run/main_scene="uid://b2c07qm7jmqod"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://scripts/globals.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [rendering]
 
