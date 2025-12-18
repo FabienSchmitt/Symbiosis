@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://ri00vtvrj18o"]
+
+[ext_resource type="Script" uid="uid://cxxink0aabi2a" path="res://scripts/player_data.gd" id="1_lx46u"]
+[ext_resource type="Resource" uid="uid://b2l64oqp8lfh1" path="res://resources/species/yellow.tres" id="2_sxxnk"]
+
+[resource]
+resource_name = "PlayerData"
+script = ExtResource("1_lx46u")
+species = ExtResource("2_sxxnk")

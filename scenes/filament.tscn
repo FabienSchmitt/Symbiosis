@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://h5dctevx0yhi"]
+
+[ext_resource type="Script" uid="uid://be42d8mp1jc3i" path="res://scripts/filament.gd" id="1_sxccr"]
+
+[node name="Filament" type="Node2D"]
+script = ExtResource("1_sxccr")

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_fmem5")
-color = Color(1, 1, 0.3019608, 1)
+color = Color(0.7032619, 0.59598196, 0.030281365, 1)
 is_neutral = false
 metadata/_custom_type_script = "uid://doyc57yk1jnih"

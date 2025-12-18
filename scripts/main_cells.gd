@@ -1,4 +1,8 @@
 extends Node2D
 
+@export var background_color: Color = Color.BROWN
+
 func _ready() -> void:
-    GameManager.create_grid()
+	print("init scene")
+	GameManager.init_scene()
+	RenderingServer.set_default_clear_color(background_color)

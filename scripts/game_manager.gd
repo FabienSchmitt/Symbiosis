@@ -4,20 +4,19 @@ var _cells : Array[Cell]
 var _selected_cells : Array[Cell]
 var connection : Array[Behaviors]
 var grid: FlowFieldGrid
+var player_data: PlayerData
 
 enum Behaviors {SYMBIOSE, PREDATION, PARASITE}
 
-var all_species = {
-	# "blue": preload("res://resources/species/blue.tres"),
-	# "red": preload("res://resources/species/red.tres"),
-	# "neutral": preload("res://resources/species/neutral.tres"),
-	# "yellow": preload("res://resources/species/yellow.tres"),
-}
+func _ready() -> void:
+	player_data = load("res://resources/player/player_data.tres")	
+
+func init_scene():
+	create_grid()
 
 ## Cells
 func add_cell(cell: Cell) -> void: 
 	_cells.append(cell)
-
 
 func add_selected_cell(cell : Cell) -> void: 
 	# If the cell has already been selected, we unselect

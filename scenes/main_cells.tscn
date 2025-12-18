@@ -16,6 +16,7 @@ mesh = SubResource("QuadMesh_6ix1l")
 
 [node name="main_cells" type="Node2D"]
 script = ExtResource("1_m2aax")
+background_color = Color(0.010988503, 1.0066848e-05, 0.030347817, 1)
 
 [node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(185, 167)
@@ -54,8 +55,11 @@ multimesh = SubResource("MultiMesh_4rnfb")
 
 [node name="FlowFieldManager" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(1, -1)
 script = ExtResource("5_m2aax")
 field_size = Vector2i(23, 13)
 cell_size = 50.0
 obstacle_weight = 2
-debug = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)

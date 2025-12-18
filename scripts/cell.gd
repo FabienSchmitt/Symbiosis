@@ -12,6 +12,7 @@ class_name Cell
 @onready var swarm_multimesh : MultiMeshInstance2D = %SwarmMeshInstance
 @onready var flow_field_manager: FlowFieldManager = %FlowFieldManager
 @onready var _replication_timer: Timer = %ReplicationTimer
+@onready var _light: PointLight2D = %PointLight2D
 
 
 var flow_field: FlowField
@@ -22,11 +23,20 @@ func _ready() -> void:
 	if species == null : species = Species.new()
 	_circle.modulate = species.color
 	_selected_circle.modulate = species.color
+	
+	#shaders stuff
+	# _circle.material = _circle.material.duplicate()
+	# set_shader()
+
+	print("player data : ",  GameManager.player_data.species.color)
+	_light.enabled = GameManager.player_data.species == species
 
 func _process(delta: float) -> void:
 	if (size >= max_size) : return
 	if (_replication_timer.is_stopped()) :
 		_replication_timer.start()
+
+	_light.enabled = GameManager.player_data.species == species
 
 
 func _input_event(viewport, event, shape_idx):
@@ -45,12 +55,15 @@ func set_timer() -> void:
 	# in case, there is a change of species, restart timer
 	_replication_timer.start()
 
+# func set_shader() -> void:
+# 	_circle.material.set_shader_parameter("base_color", species.color)
 
 func update_species(new_species: Species) -> void:
 	# TODO : when we have some other way to get the species.
 	species = new_species
 	_selected_circle.modulate = species.color
 	_circle.modulate = species.color
+	# set_shader()
 
 func _on_timer_timeout() -> void:
 	if species.is_neutral: return
