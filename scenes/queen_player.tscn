@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs8dcajfotm12"]
+
+[ext_resource type="Texture2D" uid="uid://n75b2avmlbm1" path="res://assets/sprites/white_circle.png" id="1_f03vj"]
+[ext_resource type="Script" uid="uid://b048057jqyxba" path="res://scripts/queen_player.gd" id="1_kqwfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqwfe"]
+radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_742hs"]
+offsets = PackedFloat32Array(0.16, 0.97333336)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c2hiq"]
+gradient = SubResource("Gradient_742hs")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.87383175, 0.89252335)
+
+[node name="QueenPlayer" type="CharacterBody2D"]
+script = ExtResource("1_kqwfe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="WhiteCircle" type="Sprite2D" parent="."]
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("1_f03vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kqwfe")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_c2hiq")

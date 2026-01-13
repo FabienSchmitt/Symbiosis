@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene load_steps=10 format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
 [ext_resource type="Script" uid="uid://cwfefxc7trmo2" path="res://scripts/main_cells.gd" id="1_m2aax"]
 [ext_resource type="Resource" uid="uid://cqhufkus3gt3p" path="res://resources/species/red.tres" id="3_j0jj5"]
 [ext_resource type="Resource" uid="uid://b2l64oqp8lfh1" path="res://resources/species/yellow.tres" id="3_m2aax"]
 [ext_resource type="Script" uid="uid://d2yabqdwsnv7w" path="res://scripts/flow_field_manager.gd" id="5_m2aax"]
+[ext_resource type="PackedScene" uid="uid://bs8dcajfotm12" path="res://scenes/queen_player.tscn" id="6_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
 
@@ -19,33 +20,80 @@ script = ExtResource("1_m2aax")
 background_color = Color(0.010988503, 1.0066848e-05, 0.030347817, 1)
 
 [node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(185, 167)
+position = Vector2(890.9999, 600)
 size = 50
 species = ExtResource("3_m2aax")
 
 [node name="Cell2" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(893, 474)
+position = Vector2(1686, 1036)
+scale = Vector2(3, 3)
 size = 50
 species = ExtResource("3_j0jj5")
 
 [node name="Cell5" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(193, 499)
-size = 100
+position = Vector2(898.9999, 932)
 
 [node name="Cell6" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(969, 145)
+position = Vector2(1674.9999, 578)
 
 [node name="Cell7" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(479, 135)
+position = Vector2(1184.9999, 568)
 scale = Vector2(0.67980236, 0.7)
 
 [node name="Cell3" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(397, 342)
+position = Vector2(1102.9998, 775)
 scale = Vector2(0.7, 0.7)
-size = 40
+size = 20
 
 [node name="Cell4" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(695, 261)
+position = Vector2(1400.9999, 694)
+size = 100
+
+[node name="Cell8" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(332.99988, 533)
+
+[node name="Cell9" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(1108.9999, 179)
+
+[node name="Cell10" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(618.9999, 169)
+scale = Vector2(0.67980236, 0.7)
+
+[node name="Cell11" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(536.9999, 376)
+scale = Vector2(0.7, 0.7)
+size = 20
+
+[node name="Cell12" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(834.9999, 295)
+size = 100
+
+[node name="Cell13" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(575.9999, 1012)
+
+[node name="Cell18" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(218.99988, 328)
+
+[node name="Cell19" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(336.99988, 96)
+
+[node name="Cell20" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(1563.9999, 111)
+
+[node name="Cell14" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(667.9999, 726)
+
+[node name="Cell15" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(177.99988, 716)
+scale = Vector2(0.67980236, 0.7)
+
+[node name="Cell16" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(95.99994, 923)
+scale = Vector2(0.7, 0.7)
+size = 20
+
+[node name="Cell17" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(393.99988, 842)
 size = 100
 
 [node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
@@ -57,9 +105,12 @@ multimesh = SubResource("MultiMesh_4rnfb")
 unique_name_in_owner = true
 position = Vector2(1, -1)
 script = ExtResource("5_m2aax")
-field_size = Vector2i(23, 13)
+field_size = Vector2i(50, 50)
 cell_size = 50.0
 obstacle_weight = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[node name="QueenPlayer" parent="." instance=ExtResource("6_m2aax")]
+position = Vector2(672, 459)

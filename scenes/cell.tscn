@@ -1,13 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctyvsgmd4ayj"]
+[gd_scene load_steps=8 format=3 uid="uid://ctyvsgmd4ayj"]
 
 [ext_resource type="Script" uid="uid://7nt38xyupsuo" path="res://scripts/cell.gd" id="1_gwrgs"]
 [ext_resource type="Texture2D" uid="uid://7qv6vbxpga2s" path="res://assets/sprites/big_drawn_circle.png" id="1_yh0nt"]
 [ext_resource type="Resource" uid="uid://bqndbj2j1hor7" path="res://resources/species/white.tres" id="2_ds1sf"]
 [ext_resource type="Texture2D" uid="uid://dyj5co0cv8qvs" path="res://assets/sprites/circle.png" id="3_nm02e"]
-[ext_resource type="Texture2D" uid="uid://n75b2avmlbm1" path="res://assets/sprites/white_circle.png" id="4_ecwuj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwrgs"]
 radius = 84.66
+
+[sub_resource type="Gradient" id="Gradient_ds1sf"]
+offsets = PackedFloat32Array(0.42666668, 0.8)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ecwuj"]
+gradient = SubResource("Gradient_ds1sf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.95, 0.95)
 
 [node name="Cell" type="Area2D"]
 script = ExtResource("1_gwrgs")
@@ -45,5 +54,12 @@ unique_name_in_owner = true
 [node name="PointLight2D" type="PointLight2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1, -1)
-scale = Vector2(0.25411522, 0.1600006)
-texture = ExtResource("4_ecwuj")
+scale = Vector2(3.5, 3.5)
+shadow_color = Color(0, 0.8566793, 0, 1)
+texture = SubResource("GradientTexture2D_ecwuj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = -0.01860404
+shape = SubResource("CircleShape2D_gwrgs")

@@ -28,8 +28,8 @@ func _ready() -> void:
 	# _circle.material = _circle.material.duplicate()
 	# set_shader()
 
-	print("player data : ",  GameManager.player_data.species.color)
 	_light.enabled = GameManager.player_data.species == species
+	# _light.energy = 2.0 if GameManager.player_data.species == species else 0.4
 
 func _process(delta: float) -> void:
 	if (size >= max_size) : return

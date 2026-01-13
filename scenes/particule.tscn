@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6wbrnqpdor6"]
+[gd_scene load_steps=7 format=3 uid="uid://6wbrnqpdor6"]
 
 [ext_resource type="Script" uid="uid://diyvptyl5qq25" path="res://scripts/particule.gd" id="2_1c1s6"]
 [ext_resource type="Texture2D" uid="uid://vq26fx2yu3gb" path="res://assets/sprites/triangle.png" id="2_aqt20"]
@@ -8,6 +8,15 @@
 [sub_resource type="Curve" id="Curve_aqt20"]
 _data = [Vector2(0, 0.44943827), 0.0, 0.0, 0, 0, Vector2(0.40217394, 1), 0.0, 0.0, 0, 0, Vector2(0.5978261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48314613), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_aqt20"]
+offsets = PackedFloat32Array(0.18666667, 0.7133333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1c1s6"]
+gradient = SubResource("Gradient_aqt20")
+fill = 1
+fill_from = Vector2(0.49532712, 0.49532712)
 
 [node name="Particule" type="Area2D"]
 material = SubResource("ShaderMaterial_1c1s6")
@@ -23,3 +32,6 @@ texture = ExtResource("2_aqt20")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.075, 0.1)
 polygon = PackedVector2Array(31, 16.400002, 1, -32, -0.20000076, -32, -2, -31.5, -2, -29.5, -32, 20.8, -32, 32, 32, 32, 32, 22.599998, 31, 19)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_1c1s6")
