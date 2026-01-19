@@ -7,6 +7,9 @@ extends Node2D
 
 @export var max_iteration := 1000
 
+@onready var camera_2d: DebugCamera = $Camera2D
+
+
 var _cell_scene: PackedScene
 
 var _cells: Array[Cell] = []
@@ -26,6 +29,40 @@ func _ready() -> void:
 
 	for cell in _cells:
 		get_tree().current_scene.add_child(cell)
+		
+	#debug camera settings 
+	var rect2 = compute_bounds()
+	frame_camera(camera_2d, rect2)
+
+func _draw() -> void:
+	var bounds = compute_bounds()
+	draw_rect(bounds, Color(4.899, 0.0, 4.899, 0.976), false, 2.0)
+
+func compute_bounds() -> Rect2:
+	var min_pos = Vector2.INF
+	var max_pos = -Vector2.INF
+
+	for c in _cells:
+		min_pos.x = min(min_pos.x, c.global_position.x - c.radius)
+		min_pos.y = min(min_pos.y, c.global_position.y - c.radius)
+		max_pos.x = max(max_pos.x, c.global_position.x + c.radius)
+		max_pos.y = max(max_pos.y, c.global_position.y + c.radius)
+
+	return Rect2(min_pos, max_pos - min_pos)
+	
+func frame_camera(camera: Camera2D, bounds: Rect2):
+	camera.global_position = bounds.get_center()
+
+	var viewport_size = get_viewport_rect().size
+	var zoom_x = viewport_size.x / bounds.size.x 
+	var zoom_y =  viewport_size.y / bounds.size.y
+	
+	
+	camera.zoom = Vector2.ONE * min(zoom_x, zoom_y) *0.9
+	
+	print("bounds: ", bounds, "viewport : ", viewport_size)
+	print("bounds size : ", bounds.size)
+	print("Zoom : ", zoom_x, " ",  zoom_y)
 
 	
 func _execute_loop():

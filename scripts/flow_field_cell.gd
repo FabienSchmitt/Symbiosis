@@ -17,7 +17,7 @@ func _init(p_world_pos: Vector2, p_grid_pos: Vector2i, p_size: float) -> void:
 	grid_position = p_grid_pos
 	size = Vector2(p_size, p_size)
 	center = Vector2(p_world_pos.x + p_size / 2.0, p_world_pos.y + p_size/2.0)
-    
+	
 
 func clone(cell: FlowFieldCell) -> FlowFieldCell: 
 	var new_cell = FlowFieldCell.new(cell.world_position, cell.grid_position, cell.size.x)

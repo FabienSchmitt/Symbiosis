@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ddla3fbv42y"]
+
+[ext_resource type="Script" uid="uid://ywydekuy2c00" path="res://scripts/procedural_map.gd" id="1_i2eay"]
+
+[node name="procedural_map" type="Node2D"]
+script = ExtResource("1_i2eay")
+width = null
+height = null
+alive_percentage = null
+pixel_size = null
