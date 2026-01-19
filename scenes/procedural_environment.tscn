@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd8qntrmh0ipq"]
+
+[ext_resource type="Script" uid="uid://c3otgqvgg3ur4" path="res://scripts/procedural_environment.gd" id="1_1idrb"]
+
+[node name="ProceduralEnvironment" type="Node2D"]
+script = ExtResource("1_1idrb")

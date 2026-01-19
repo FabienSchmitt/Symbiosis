@@ -5,6 +5,7 @@ class_name Cell
 @export var size := 5
 @export var max_size := 100
 @export var species: Species
+@export var radius: float = 32.0 
 
 @onready var size_label : Label = $Label
 @onready var _selected_circle : Sprite2D  = %SelectedCircle
@@ -13,16 +14,23 @@ class_name Cell
 @onready var flow_field_manager: FlowFieldManager = %FlowFieldManager
 @onready var _replication_timer: Timer = %ReplicationTimer
 @onready var _light: PointLight2D = %PointLight2D
+@onready var _area_collision_shape : CollisionShape2D = %AreaCollisionShape
+@onready var _static_collision_shape : CollisionShape2D = %StaticCollisionShape
 
 
 var flow_field: FlowField
 
 func _ready() -> void:
+	_area_collision_shape.shape = _area_collision_shape.shape.duplicate()
+	_static_collision_shape.shape = _static_collision_shape.shape.duplicate()
+	
 	set_timer()
+	
 	size_label.text = str(size)
 	if species == null : species = Species.new()
 	_circle.modulate = species.color
 	_selected_circle.modulate = species.color
+	set_radius(radius)
 	
 	#shaders stuff
 	# _circle.material = _circle.material.duplicate()
@@ -64,6 +72,25 @@ func update_species(new_species: Species) -> void:
 	_selected_circle.modulate = species.color
 	_circle.modulate = species.color
 	# set_shader()
+
+func set_radius(value: float):
+	radius = value
+	# Collision
+	var shape := _area_collision_shape.shape as CircleShape2D
+	shape.radius = radius
+	shape = _static_collision_shape.shape as CircleShape2D
+	shape.radius = radius
+
+	# Sprite scaling
+	if _circle.texture:
+		var texture_size = _circle.texture.get_size()
+		var diameter = radius * 2.0
+		_circle.scale = Vector2.ONE * (diameter / texture_size.x)
+	
+	if _selected_circle.texture:
+		var texture_size = _selected_circle.texture.get_size()
+		var diameter = radius * 2.0
+		_selected_circle.scale = Vector2.ONE * (diameter / texture_size.x)
 
 func _on_timer_timeout() -> void:
 	if species.is_neutral: return

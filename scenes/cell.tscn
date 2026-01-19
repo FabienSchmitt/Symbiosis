@@ -21,7 +21,10 @@ fill_to = Vector2(0.95, 0.95)
 [node name="Cell" type="Area2D"]
 script = ExtResource("1_gwrgs")
 replication_speed = 0.5
+size = null
+max_size = null
 species = ExtResource("2_ds1sf")
+radius = null
 
 [node name="BigDrawnCircle" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -44,7 +47,8 @@ text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="AreaCollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 rotation = -0.01860404
 shape = SubResource("CircleShape2D_gwrgs")
 
@@ -60,6 +64,7 @@ texture = SubResource("GradientTexture2D_ecwuj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="StaticCollisionShape" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
 rotation = -0.01860404
 shape = SubResource("CircleShape2D_gwrgs")
