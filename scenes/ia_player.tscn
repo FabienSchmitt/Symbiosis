@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c88sr4e8ofito"]
+
+[ext_resource type="Script" uid="uid://bwtu4s3mbw75s" path="res://scripts/players/ia_player.gd" id="1_0knbj"]
+
+[node name="IAPlayer" type="Node2D" unique_id=825862007]
+script = ExtResource("1_0knbj")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=552742145]
+unique_name_in_owner = true
+autostart = true

@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd8qntrmh0ipq"]
+[gd_scene format=3 uid="uid://cd8qntrmh0ipq"]
 
-[ext_resource type="Script" uid="uid://c3otgqvgg3ur4" path="res://scripts/procedural_environment.gd" id="1_1idrb"]
+[ext_resource type="Script" uid="uid://c3otgqvgg3ur4" path="res://scripts/levels/procedural_environment.gd" id="1_1idrb"]
 [ext_resource type="Script" uid="uid://dmg0f6ikp4i3k" path="res://scripts/debug_camera.gd" id="2_1daip"]
 
-[node name="ProceduralEnvironment" type="Node2D"]
+[node name="ProceduralEnvironment" type="Node2D" unique_id=1239750935]
 script = ExtResource("1_1idrb")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=854179685]
 script = ExtResource("2_1daip")

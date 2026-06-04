@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2c07qm7jmqod"]
+[gd_scene format=3 uid="uid://b2c07qm7jmqod"]
 
 [ext_resource type="PackedScene" uid="uid://ctyvsgmd4ayj" path="res://scenes/cell.tscn" id="1_0303c"]
-[ext_resource type="Script" uid="uid://cwfefxc7trmo2" path="res://scripts/main_cells.gd" id="1_m2aax"]
+[ext_resource type="Script" uid="uid://cwfefxc7trmo2" path="res://scripts/levels/main_cells.gd" id="1_m2aax"]
 [ext_resource type="Resource" uid="uid://cqhufkus3gt3p" path="res://resources/species/red.tres" id="3_j0jj5"]
 [ext_resource type="Resource" uid="uid://b2l64oqp8lfh1" path="res://resources/species/yellow.tres" id="3_m2aax"]
-[ext_resource type="Script" uid="uid://d2yabqdwsnv7w" path="res://scripts/flow_field_manager.gd" id="5_m2aax"]
-[ext_resource type="PackedScene" uid="uid://bs8dcajfotm12" path="res://scenes/queen_player.tscn" id="6_m2aax"]
+[ext_resource type="PackedScene" uid="uid://c88sr4e8ofito" path="res://scenes/ia_player.tscn" id="5_eu3ro"]
+[ext_resource type="Script" uid="uid://d2yabqdwsnv7w" path="res://scripts/flow_field/flow_field_manager.gd" id="5_m2aax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d43la"]
 
@@ -15,102 +15,133 @@
 use_colors = true
 mesh = SubResource("QuadMesh_6ix1l")
 
-[node name="main_cells" type="Node2D"]
+[node name="main_cells" type="Node2D" unique_id=304078689]
 script = ExtResource("1_m2aax")
 background_color = Color(0.010988503, 1.0066848e-05, 0.030347817, 1)
 
-[node name="Cell" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(890.9999, 600)
-size = 50
+[node name="Cells" type="Node2D" parent="." unique_id=1720014329]
+
+[node name="Cell" parent="Cells" unique_id=1808453659 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(720, 500)
+population = 50
+max_size = 100
 species = ExtResource("3_m2aax")
+radius = 32.0
 
-[node name="Cell2" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1686, 1036)
+[node name="Cell2" parent="Cells" unique_id=1444494384 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(252, 234)
 scale = Vector2(3, 3)
-size = 50
+population = 100
+max_size = 100
 species = ExtResource("3_j0jj5")
+radius = 32.0
 
-[node name="Cell5" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(898.9999, 932)
+[node name="Cell5" parent="Cells" unique_id=451485688 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(928, 364)
+max_size = 100
+radius = 32.0
 
-[node name="Cell6" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1674.9999, 578)
+[node name="Cell6" parent="Cells" unique_id=1322012873 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(1036, 206)
+max_size = 100
+radius = 32.0
 
-[node name="Cell7" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1184.9999, 568)
+[node name="Cell7" parent="Cells" unique_id=755564444 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(1081, 422)
 scale = Vector2(0.67980236, 0.7)
+max_size = 100
+radius = 32.0
 
-[node name="Cell3" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1102.9998, 775)
+[node name="Cell3" parent="Cells" unique_id=605503465 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(802, 311.00003)
 scale = Vector2(0.7, 0.7)
-size = 20
+max_size = 100
+radius = 32.0
 
-[node name="Cell4" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1400.9999, 694)
-size = 100
+[node name="Cell4" parent="Cells" unique_id=248690537 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(1021, 519)
+max_size = 100
+radius = 32.0
 
-[node name="Cell8" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(332.99988, 533)
+[node name="Cell8" parent="Cells" unique_id=1780603760 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(103, 546)
+max_size = 100
+radius = 32.0
 
-[node name="Cell9" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1108.9999, 179)
+[node name="Cell9" parent="Cells" unique_id=207645787 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(766, 87)
+max_size = 100
+radius = 32.0
 
-[node name="Cell10" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
+[node name="Cell10" parent="Cells" unique_id=166718459 groups=["cells"] instance=ExtResource("1_0303c")]
 position = Vector2(618.9999, 169)
 scale = Vector2(0.67980236, 0.7)
+max_size = 100
+radius = 32.0
 
-[node name="Cell11" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(536.9999, 376)
+[node name="Cell11" parent="Cells" unique_id=1059858999 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(504, 505)
 scale = Vector2(0.7, 0.7)
-size = 20
+max_size = 100
+radius = 32.0
 
-[node name="Cell12" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(834.9999, 295)
-size = 100
+[node name="Cell12" parent="Cells" unique_id=654791998 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(576, 333)
+max_size = 100
+radius = 32.0
 
-[node name="Cell13" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(575.9999, 1012)
+[node name="Cell13" parent="Cells" unique_id=357055046 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(885, 561)
+max_size = 100
+radius = 32.0
 
-[node name="Cell18" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(218.99988, 328)
+[node name="Cell18" parent="Cells" unique_id=479352977 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(269, 524)
+max_size = 100
+radius = 32.0
 
-[node name="Cell19" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(336.99988, 96)
+[node name="Cell19" parent="Cells" unique_id=253280250 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(604, 42)
+max_size = 100
+radius = 32.0
 
-[node name="Cell20" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(1563.9999, 111)
+[node name="Cell20" parent="Cells" unique_id=925708084 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(967, 65)
+max_size = 100
+radius = 32.0
 
-[node name="Cell14" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(667.9999, 726)
+[node name="Cell14" parent="Cells" unique_id=1308577341 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(597, 576)
+max_size = 100
+radius = 32.0
 
-[node name="Cell15" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(177.99988, 716)
+[node name="Cell15" parent="Cells" unique_id=1315647096 groups=["cells"] instance=ExtResource("1_0303c")]
+position = Vector2(391, 582)
 scale = Vector2(0.67980236, 0.7)
+max_size = 100
+radius = 32.0
 
-[node name="Cell16" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(95.99994, 923)
-scale = Vector2(0.7, 0.7)
-size = 20
+[node name="Players" type="Node2D" parent="." unique_id=1214395141]
 
-[node name="Cell17" parent="." groups=["cells"] instance=ExtResource("1_0303c")]
-position = Vector2(393.99988, 842)
-size = 100
+[node name="IAPlayer" parent="Players" unique_id=825862007 instance=ExtResource("5_eu3ro")]
+species = ExtResource("3_m2aax")
 
-[node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="."]
+[node name="IAPlayer2" parent="Players" unique_id=1067210501 instance=ExtResource("5_eu3ro")]
+species = ExtResource("3_j0jj5")
+
+[node name="SwarmMeshInstance" type="MultiMeshInstance2D" parent="." unique_id=502837439]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_d43la")
 multimesh = SubResource("MultiMesh_4rnfb")
 
-[node name="FlowFieldManager" type="Node2D" parent="."]
+[node name="FlowFieldManager" type="Node2D" parent="." unique_id=91522417]
 unique_name_in_owner = true
 position = Vector2(1, -1)
 script = ExtResource("5_m2aax")
 field_size = Vector2i(50, 50)
-cell_size = 50.0
+cell_size = 25.0
 obstacle_weight = 2
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=94901875]
+visible = false
 color = Color(0.0885599, 0.0885599, 0.0885599, 1)
-
-[node name="QueenPlayer" parent="." instance=ExtResource("6_m2aax")]
-position = Vector2(672, 459)

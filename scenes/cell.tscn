@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctyvsgmd4ayj"]
+[gd_scene format=3 uid="uid://ctyvsgmd4ayj"]
 
-[ext_resource type="Script" uid="uid://7nt38xyupsuo" path="res://scripts/cell.gd" id="1_gwrgs"]
+[ext_resource type="Script" uid="uid://7nt38xyupsuo" path="res://scripts/game_mechanichs/cell.gd" id="1_gwrgs"]
 [ext_resource type="Texture2D" uid="uid://7qv6vbxpga2s" path="res://assets/sprites/big_drawn_circle.png" id="1_yh0nt"]
 [ext_resource type="Resource" uid="uid://bqndbj2j1hor7" path="res://resources/species/white.tres" id="2_ds1sf"]
 [ext_resource type="Texture2D" uid="uid://dyj5co0cv8qvs" path="res://assets/sprites/circle.png" id="3_nm02e"]
@@ -18,27 +18,24 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.95, 0.95)
 
-[node name="Cell" type="Area2D"]
+[node name="Cell" type="Area2D" unique_id=1000450696]
 script = ExtResource("1_gwrgs")
 replication_speed = 0.5
-size = null
-max_size = null
 species = ExtResource("2_ds1sf")
-radius = null
 
-[node name="BigDrawnCircle" type="Sprite2D" parent="."]
+[node name="BigDrawnCircle" type="Sprite2D" parent="." unique_id=642321852]
 unique_name_in_owner = true
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_yh0nt")
 
-[node name="SelectedCircle" type="Sprite2D" parent="BigDrawnCircle"]
+[node name="SelectedCircle" type="Sprite2D" parent="BigDrawnCircle" unique_id=708082181]
 unique_name_in_owner = true
 visible = false
 rotation = -0.0034612643
 scale = Vector2(3.3, 3.3)
 texture = ExtResource("3_nm02e")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=777849388]
 offset_left = -201.0
 offset_top = -51.0
 offset_right = 199.0
@@ -47,24 +44,24 @@ text = "50"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AreaCollisionShape" type="CollisionShape2D" parent="."]
+[node name="AreaCollisionShape" type="CollisionShape2D" parent="." unique_id=1412050558]
 unique_name_in_owner = true
 rotation = -0.01860404
 shape = SubResource("CircleShape2D_gwrgs")
 
-[node name="ReplicationTimer" type="Timer" parent="."]
+[node name="ReplicationTimer" type="Timer" parent="." unique_id=1153647404]
 unique_name_in_owner = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=661493172]
 unique_name_in_owner = true
 position = Vector2(1, -1)
 scale = Vector2(3.5, 3.5)
 shadow_color = Color(0, 0.8566793, 0, 1)
 texture = SubResource("GradientTexture2D_ecwuj")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1285739018]
 
-[node name="StaticCollisionShape" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="StaticCollisionShape" type="CollisionShape2D" parent="StaticBody2D" unique_id=412985127]
 unique_name_in_owner = true
 rotation = -0.01860404
 shape = SubResource("CircleShape2D_gwrgs")

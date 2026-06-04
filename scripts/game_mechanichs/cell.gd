@@ -2,7 +2,7 @@ extends Area2D
 class_name Cell
 
 @export var replication_speed := 2.0
-@export var size := 5
+@export var population := 5
 @export var max_size := 100
 @export var species: Species
 @export var radius: float = 32.0 
@@ -18,7 +18,7 @@ class_name Cell
 @onready var _static_collision_shape : CollisionShape2D = %StaticCollisionShape
 
 
-var flow_field: FlowField
+var _flow_field: FlowField
 
 func _ready() -> void:
 	_area_collision_shape.shape = _area_collision_shape.shape.duplicate()
@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 	set_timer()
 	
-	size_label.text = str(size)
+	size_label.text = str(population)
 	if species == null : species = Species.new()
 	_circle.modulate = species.color
 	_selected_circle.modulate = species.color
@@ -36,26 +36,31 @@ func _ready() -> void:
 	# _circle.material = _circle.material.duplicate()
 	# set_shader()
 
-	_light.enabled = GameManager.player_data.species == species
+	_light.enabled = true
+	#_light.enabled = GameManager.player_data.species == species
 	# _light.energy = 2.0 if GameManager.player_data.species == species else 0.4
 
 func _process(delta: float) -> void:
-	if (size >= max_size) : return
+	if (population >= max_size) : return
 	if (_replication_timer.is_stopped()) :
 		_replication_timer.start()
 
-	_light.enabled = GameManager.player_data.species == species
+	#_light.enabled = GameManager.player_data.species == species
 
+func get_flow_field() -> FlowField :
+	if _flow_field == null: 
+		_flow_field = flow_field_manager.compute_flow_field(global_position)
+	return _flow_field
+	
+# func _input_event(viewport, event, shape_idx):
+# 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT  and event.is_pressed():
+# 		if flow_field == null: 
+# 			flow_field = flow_field_manager.compute_flow_field(global_position)
+# 		print("flow field attacked : ", flow_field)
+# 		GameManager.attack_cell(self)
 
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT  and event.is_pressed():
-		if flow_field == null: 
-			flow_field = flow_field_manager.compute_flow_field(global_position)
-		print("flow field attacked : ", flow_field)
-		GameManager.attack_cell(self)
-
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
-		GameManager.add_selected_cell(self)
+# 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+# 		GameManager.add_selected_cell(self)
 
 func set_timer() -> void:
 	_replication_timer.wait_time = species.replication_speed  # seconds	
@@ -94,33 +99,33 @@ func set_radius(value: float):
 
 func _on_timer_timeout() -> void:
 	if species.is_neutral: return
-	size += 1
-	size_label.text = str(size)
+	population += 1
+	size_label.text = str(population)
 
 func on_click():
 	#create_swarm_multi_mesh()
 	pass
 
 func attack(target: Cell):
-	var swarm_size = size / 2
-	size -= swarm_size
+	var swarm_size = population / 2
+	population -= swarm_size
 	var swarm = Globals.swarm_factory.create_swarm(self, target, swarm_size)
 	get_tree().current_scene.add_child(swarm)
-	size_label.text = str(size)
+	size_label.text = str(population)
 
 # FOR MULTIMESH USAGE
 # func create_swarm_multi_mesh():
-# 	var swarm_size = size/2
-# 	size -= swarm_size
-# 	size_label.text = str(size)
+# 	var swarm_size = population/2
+# 	population -= swarm_size
+# 	size_label.text = str(population)
 # 	swarm_multimesh.spawn_swarm(self.position, swarm_size)
 
 func select(selected: bool) -> void:
 	_selected_circle.visible = selected
 
 func damage(damage: int, particule_species: Species) -> void:
-	size -= damage
-	if size < 0:
+	population -= damage
+	if population < 0:
 		update_species(particule_species)
-		size = size * -1
-	size_label.text = str(size)
+		population = population * -1
+	size_label.text = str(population)
