@@ -30,7 +30,7 @@ func _plan_attacks():
 
 	for target in possible_targets:
 		for my_cell in my_cells : 
-			if target.population < my_cell.population:
+			if target.population < my_cell.population / 2.0:
 				if !valid_targets.find_key(target):
 					valid_targets.get_or_add(target, [my_cell])
 				else : 

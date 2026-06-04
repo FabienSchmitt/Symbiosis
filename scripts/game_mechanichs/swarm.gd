@@ -7,7 +7,7 @@ var _center: Vector2
 var species : Species
 
 var seek_weight: float = 30
-var boids_weight: float = 5
+var boids_weight: float = 10
 var align_weight: float = 0.5
 var cohesion_weight: float = 1
 var avoid_weight: float = 20
